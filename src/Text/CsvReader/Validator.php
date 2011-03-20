@@ -19,6 +19,6 @@ abstract class Text_CsvReader_Validator extends Text_CsvReader_Base
     }
     return $caughtErrors;
   }
-  protected function validate() {
+  protected function validate($value, $column_index) {
   }
 }

@@ -1,5 +1,5 @@
 <?php
-class CsvReaderValidatorException extends CsvReaderException {
+class CsvReaderValidatorException extends Text_CsvReader_Exception {
   protected $validatorErrors = array();
   public function __construct($validatorErrors)
   {

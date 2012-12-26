@@ -1,5 +1,5 @@
 <?php
-class Text_CsvReader_Grepper_Unique extends Text_CsvReader_Grepper
+class Text_CsvReader_Grepper_Unique extends Text_CsvReader_Grepper implements Countable
 {
   protected $requiredOptions = array('target');
   protected $already_exists = array();
@@ -19,5 +19,10 @@ class Text_CsvReader_Grepper_Unique extends Text_CsvReader_Grepper
     }
     $this->already_exists[$key] = 1;
     return true;
+  }
+
+  public function count()
+  {
+      return count($this->already_exists);
   }
 }

@@ -6,7 +6,7 @@ class Text_CsvReader_Filter_ColumnChange extends Text_CsvReader_Filter
   public function current() {
     $values = parent::current();
     if (!is_array($this->getOption('column'))) {
-      throw new CsvReaderException('column option must be an array');
+      throw new Text_CsvReader_Exception('column option must be an array');
     }
     $new_values = array();
     $max_index = -1;

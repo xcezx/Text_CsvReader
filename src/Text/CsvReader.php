@@ -20,7 +20,7 @@ class Text_CsvReader
   {
     $this->sheets = array();
     $this->options = array();
-    foreach($whole_options as $sheet_name => $options) {
+    foreach ($whole_options as $sheet_name => $options) {
       $this->options[$sheet_name] = $options;
     }
   }
@@ -32,6 +32,7 @@ class Text_CsvReader
     if (!is_array($target_sheets)) {
       $target_sheets = array($target_sheets);
     }
+
     return $target_sheets;
   }
 
@@ -48,6 +49,7 @@ class Text_CsvReader
       }
       $ret = $ret && $this->sheets[$sheet_name]->processSheet($enable_writers);
     }
+
     return $ret;
   }
   public function getErrors($sheet_name)
@@ -55,6 +57,7 @@ class Text_CsvReader
     if (isset($this->sheets[$sheet_name])) {
       return $this->sheets[$sheet_name]->getErrors();
     }
+
     return array();
   }
   public function showErrors($target_sheets = null)
@@ -67,15 +70,15 @@ class Text_CsvReader
       }
     }
   }
-  static public function getArray($name)
+  public static function getArray($name)
   {
     return isset(self::$arrayHolder[$name]) ? self::$arrayHolder[$name] : null;
   }
-  static public function getArrayValue($name, $key)
+  public static function getArrayValue($name, $key)
   {
     return isset(self::$arrayHolder[$name][$key]) ? self::$arrayHolder[$name][$key] : null;
   }
-  static public function setArray($name, $array)
+  public static function setArray($name, $array)
   {
     if (!is_array($array)) {
       throw new Text_CsvReader_Exception('Text_CsvReader::setArray() expects an array.');

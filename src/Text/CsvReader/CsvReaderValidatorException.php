@@ -1,5 +1,6 @@
 <?php
-class CsvReaderValidatorException extends Text_CsvReader_Exception {
+class CsvReaderValidatorException extends Text_CsvReader_Exception
+{
   protected $validatorErrors = array();
   public function __construct($validatorErrors)
   {
@@ -8,11 +9,12 @@ class CsvReaderValidatorException extends Text_CsvReader_Exception {
     parent::__construct($msg);
     $this->setErrors($validatorErrors);
   }
-  public function setErrors($errors) {
+  public function setErrors($errors)
+  {
     $this->validatorErrors = $errors;
   }
-  public function getErrors() {
+  public function getErrors()
+  {
     return $this->validatorErrors;
   }
 }
-

@@ -59,6 +59,7 @@ class Text_CsvReader_Reader_NullProducer extends Text_CsvReader_Reader
     if ($this->lineNumber > $this->getOption('count')) {
       return false;
     }
+
     return true;
   }
 }

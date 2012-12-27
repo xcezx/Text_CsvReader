@@ -3,7 +3,8 @@ class Text_CsvReader_Filter_ColumnChange extends Text_CsvReader_Filter
 {
   protected $options = array('column' => array(),
                              'max_column' => 0);
-  public function current() {
+  public function current()
+  {
     $values = parent::current();
     if (!is_array($this->getOption('column'))) {
       throw new Text_CsvReader_Exception('column option must be an array');
@@ -25,6 +26,7 @@ class Text_CsvReader_Filter_ColumnChange extends Text_CsvReader_Filter
     foreach ($to_from_indexes as $to_index => $from_index) {
       $new_values[$to_index] = $values[$from_index];
     }
+
     return $new_values;
   }
 }

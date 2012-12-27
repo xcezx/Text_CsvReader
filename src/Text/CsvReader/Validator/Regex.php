@@ -10,6 +10,7 @@ class Text_CsvReader_Validator_Regex extends Text_CsvReader_Validator
     if (isset($pattern) && !preg_match($pattern, $value)) {
       return array(sprintf('正規表現%sのマッチに失敗しました',$pattern));
     }
+
     return null;
   }
 }

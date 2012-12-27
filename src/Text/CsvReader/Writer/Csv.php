@@ -1,5 +1,5 @@
 <?php
-include_once('Stream/Filter/Mbstring.php');
+include_once 'Stream/Filter/Mbstring.php';
 class Text_CsvReader_Writer_Csv extends Text_CsvReader_Writer
 {
   protected
@@ -41,6 +41,7 @@ class Text_CsvReader_Writer_Csv extends Text_CsvReader_Writer
         throw new Text_CsvReader_Exception('Cannot append stream filter: '. $filter_name);
       }
     }
+
     return $fp;
   }
   public function fclose()
@@ -50,7 +51,8 @@ class Text_CsvReader_Writer_Csv extends Text_CsvReader_Writer
       $this->fp = null;
     }
   }
-  public function write($values) {
+  public function write($values)
+  {
     $ret = fputcsv($this->fp,
                    $values,
                    $this->getOption('delimiter'),
@@ -60,10 +62,12 @@ class Text_CsvReader_Writer_Csv extends Text_CsvReader_Writer
       throw new Text_CsvReader_Exception('writing csv failure.');
     }
   }
-  public function finalize() {
+  public function finalize()
+  {
     $this->fclose();
   }
-  public function rollback() {
+  public function rollback()
+  {
     $this->fclose();
     // rmすべき？
   }

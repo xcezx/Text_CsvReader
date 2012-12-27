@@ -49,6 +49,7 @@ class Text_CsvReader_Reader_Csv extends Text_CsvReader_Reader
       throw new Text_CsvReader_Exception('Cannot append stream filter: '. $filter_name);
     }
     $this->is_eof = false;
+
     return $fp;
   }
 
@@ -73,6 +74,7 @@ class Text_CsvReader_Reader_Csv extends Text_CsvReader_Reader
     } else {
       $this->fp = $this->fopen();
     }
+
     return $this->fetchLine();
   }
 
@@ -82,7 +84,8 @@ class Text_CsvReader_Reader_Csv extends Text_CsvReader_Reader
    * @access public
    * @return array The current csv row as a 2 dimensional array
    */
-  public function current() {
+  public function current()
+  {
     return $this->currentValues;
   }
 
@@ -92,7 +95,8 @@ class Text_CsvReader_Reader_Csv extends Text_CsvReader_Reader
    * @access public
    * @return int The current line number
    */
-  public function key() {
+  public function key()
+  {
     return sprintf("%s:%d", $this->getOption('file'),$this->lineNumber);
   }
 
@@ -102,7 +106,8 @@ class Text_CsvReader_Reader_Csv extends Text_CsvReader_Reader
    * @access public
    * @return boolean Returns true on EOF reached, false otherwise.
    */
-  public function next() {
+  public function next()
+  {
     return $this->fetchLine();
   }
 
@@ -112,20 +117,24 @@ class Text_CsvReader_Reader_Csv extends Text_CsvReader_Reader
    * @access public
    * @return boolean If the next row is a valid row.
    */
-  public function valid() {
+  public function valid()
+  {
     if ($this->is_eof) {
       return false;
     }
+
     return true;
   }
 
-  protected function fetchLine() {
+  protected function fetchLine()
+  {
     if ($this->is_eof) {
       return false;
-    } elseif(feof($this->fp)) {
+    } elseif (feof($this->fp)) {
       fclose($this->fp);
       $this->is_eof = true;
       $this->fp = null;
+
       return false;
     }
     if (is_resource($this->fp)) {
@@ -135,6 +144,7 @@ class Text_CsvReader_Reader_Csv extends Text_CsvReader_Reader
                                      $this->getOption('delimiter'),
                                      $this->getOption('enclosure'));
     }
+
     return true;
   }
 }

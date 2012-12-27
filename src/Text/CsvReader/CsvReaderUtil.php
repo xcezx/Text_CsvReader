@@ -22,8 +22,7 @@ class CsvReaderUtil
    */
   public static function arrayDeepMerge()
   {
-    switch (func_num_args())
-    {
+    switch (func_num_args()) {
       case 0:
         return false;
       case 1:
@@ -31,39 +30,30 @@ class CsvReaderUtil
       case 2:
         $args = func_get_args();
         $args[2] = array();
-        if (is_array($args[0]) && is_array($args[1]))
-        {
-          foreach (array_unique(array_merge(array_keys($args[0]),array_keys($args[1]))) as $key)
-          {
+        if (is_array($args[0]) && is_array($args[1])) {
+          foreach (array_unique(array_merge(array_keys($args[0]),array_keys($args[1]))) as $key) {
             $isKey0 = array_key_exists($key, $args[0]);
             $isKey1 = array_key_exists($key, $args[1]);
-            if ($isKey0 && $isKey1 && is_array($args[0][$key]) && is_array($args[1][$key]))
-            {
+            if ($isKey0 && $isKey1 && is_array($args[0][$key]) && is_array($args[1][$key])) {
               $args[2][$key] = self::arrayDeepMerge($args[0][$key], $args[1][$key]);
-            }
-            else if ($isKey0 && $isKey1)
-            {
+            } elseif ($isKey0 && $isKey1) {
               $args[2][$key] = $args[1][$key];
-            }
-            else if (!$isKey1)
-            {
+            } elseif (!$isKey1) {
               $args[2][$key] = $args[0][$key];
-            }
-            else if (!$isKey0)
-            {
+            } elseif (!$isKey0) {
               $args[2][$key] = $args[1][$key];
             }
           }
+
           return $args[2];
-        }
-        else
-        {
+        } else {
           return $args[1];
         }
       default :
         $args = func_get_args();
         $args[1] = sfToolkit::arrayDeepMerge($args[0], $args[1]);
         array_shift($args);
+
         return call_user_func_array(array('sfToolkit', 'arrayDeepMerge'), $args);
         break;
     }

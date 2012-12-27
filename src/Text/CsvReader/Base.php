@@ -239,10 +239,12 @@ abstract class Text_CsvReader_Base
   {
     $this->defaultOptions = $options;
   }
-  protected function getTargetColumns($value = array()) {
+  protected function getTargetColumns($value = array())
+  {
     return $this->targetColumns ? $this->targetColumns : array_keys($value);
   }
-  protected function prepareTargetColumns() {
+  protected function prepareTargetColumns()
+  {
     $columns = array();
     if ($this->hasOption('target')) {
       if (is_array($this->getOption('target'))) {

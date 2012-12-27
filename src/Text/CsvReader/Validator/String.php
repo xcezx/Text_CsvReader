@@ -5,7 +5,8 @@ class Text_CsvReader_Validator_String extends Text_CsvReader_Validator
   protected $options = array('min_length' => array(),
                              'max_length' => array());
 
-  protected function validate($value, $column_index) {
+  protected function validate($value, $column_index)
+  {
     $length = strlen($value);
     $error = array();
     if ($this->hasOption('max_length', $column_index)
@@ -20,6 +21,7 @@ class Text_CsvReader_Validator_String extends Text_CsvReader_Validator
                          $this->getOption('min_length', $column_index),
                          $length);
     }
+
     return $error;
   }
 }

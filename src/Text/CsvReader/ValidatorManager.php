@@ -12,6 +12,7 @@ class Text_CsvReader_ValidatorManager extends Text_CsvReader_Filter
   {
     $ret = parent::rewind();
     $this->validatorErrors = array(); // 過去に発生したエラーをリセット
+
     return $ret;
   }
   public function valid()
@@ -20,8 +21,10 @@ class Text_CsvReader_ValidatorManager extends Text_CsvReader_Filter
     if ($value === false && $this->numErrors() > 0) {
       // イテレータが最終行に到達した時点で、貯めておいた例外を投げる。
       $this->throwAllError();
+
       return false; // dummy: never executed
     }
+
     return $value;
   }
   public function current()
@@ -43,6 +46,7 @@ class Text_CsvReader_ValidatorManager extends Text_CsvReader_Filter
     if ($caughtErrors) {
       $this->logErrors($caughtErrors);
     }
+
     return $values;
   }
 

@@ -9,11 +9,13 @@ class Text_CsvReader_Filter_Random extends Text_CsvReader_Mapper
   public function rewind()
   {
     $this->fetchRandomValue();
+
     return parent::rewind();
   }
   public function next()
   {
     $this->fetchRandomValue();
+
     return parent::next();
   }
   protected function fetchRandomValue()

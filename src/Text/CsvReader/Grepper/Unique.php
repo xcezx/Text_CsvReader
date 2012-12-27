@@ -18,6 +18,7 @@ class Text_CsvReader_Grepper_Unique extends Text_CsvReader_Grepper implements Co
       return false;
     }
     $this->already_exists[$key] = 1;
+
     return true;
   }
 

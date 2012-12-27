@@ -15,6 +15,7 @@ abstract class Text_CsvReader_Mapper extends Text_CsvReader_Filter
     foreach ($column_indexes as $column_index) {
       $values[$column_index] = $this->map($values[$column_index], $column_index);
     }
+
     return $values;
   }
   protected function map($value, $column_index)

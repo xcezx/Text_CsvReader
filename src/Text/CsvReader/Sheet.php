@@ -43,6 +43,7 @@ class Text_CsvReader_Sheet extends  Text_CsvReader_Base
                                                  array('validators' => $validators)));
     }
     $iterator = $this->getFilterInstance($iterator, $this->getOption('postfilter'));
+
     return $iterator;
   }
   protected function getFilterInstance(Iterator $inner_iterator, $filter_iterators)
@@ -64,6 +65,7 @@ class Text_CsvReader_Sheet extends  Text_CsvReader_Base
         throw new Text_CsvReader_Exception('instance does not implements Text_CsvReader_Filter: '.$class_name);
       }
     }
+
     return $iterator;
   }
   protected function prepareInstances($option_name)
@@ -83,6 +85,7 @@ class Text_CsvReader_Sheet extends  Text_CsvReader_Base
         $instances[] = $instance;
       }
     }
+
     return $instances;
   }
   protected function find_class($class_name, $subdir_name = '')
@@ -100,6 +103,7 @@ class Text_CsvReader_Sheet extends  Text_CsvReader_Base
         return $modified_class_name;
       }
     }
+
     return '';
   }
   public function processSheet($enable_writers)
@@ -122,17 +126,21 @@ class Text_CsvReader_Sheet extends  Text_CsvReader_Base
       foreach ($writers as $writer) {
         $writer->rollback();
       }
+
       return false;
     }
     foreach ($writers as $writer) {
       $writer->finalize();
     }
+
     return true;
   }
-  public function hasError() {
+  public function hasError()
+  {
     return isset($this->validatorException);
   }
-  public function getErrors() {
+  public function getErrors()
+  {
     return isset($this->validatorException) ? $this->validatorException->getErrors() : array();
   }
 

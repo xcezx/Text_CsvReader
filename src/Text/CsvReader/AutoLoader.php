@@ -1,14 +1,15 @@
 <?php
 class Text_CsvReader_AutoLoader
 {
-  static protected $instance = null;
+  protected static $instance = null;
   protected $path = array();
 
-  static public function getInstance()
+  public static function getInstance()
   {
     if (!self::$instance) {
       self::$instance = new Text_CsvReader_AutoLoader();
     }
+
     return self::$instance;
   }
   public function __construct()

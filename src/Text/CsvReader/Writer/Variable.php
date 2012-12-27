@@ -9,7 +9,8 @@ class Text_CsvReader_Writer_Variable extends Text_CsvReader_Writer
   {
     $this->values = array();
   }
-  public function write($values) {
+  public function write($values)
+  {
     if ($this->hasOption('key') && $this->hasOption('value')) {
       $key = $values[$this->getOption('key')];
       $value = $values[$this->getOption('value')];
@@ -18,9 +19,11 @@ class Text_CsvReader_Writer_Variable extends Text_CsvReader_Writer
       $this->values[] = $values;
     }
   }
-  public function finalize() {
+  public function finalize()
+  {
     Text_CsvReader::setArray($this->getOption('name'), $this->values);
   }
-  public function rollback() {
+  public function rollback()
+  {
   }
 }

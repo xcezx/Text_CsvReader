@@ -1,0 +1,44 @@
+{
+    "name": "openpear/text_csv-reader",
+    "description": "CSV Reader",
+    "license": "PHP-3.01",
+    "authors": [
+        {
+            "name": "hnw",
+            "role": "developer"
+        },
+        {
+            "name": "xcezx",
+            "email": "main.xcezx@gmail.com",
+            "role": "maintainer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "openpear/stream_filter_mbstring",
+                "version": "0.0.7",
+                "source": {
+                    "url": "git@github.com:xcezx/Stream_Filter_Mbstring.git",
+                    "type": "git",
+                    "reference": "master"
+                },
+                "autoload": {
+                    "classmap": ["src/"]
+                }
+            }
+        }
+    ],
+    "require": {
+        "openpear/stream_filter_mbstring": "0.0.7"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.10"
+    },
+    "autoload": {
+        "psr-0": {
+            "Text_CsvReader": "src/"
+        }
+    }
+}

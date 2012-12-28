@@ -20,7 +20,7 @@ abstract class Text_CsvReader_Base
   public function __construct($options = array(), $messages = array())
   {
     if (!is_array($options) || !is_array($messages)) {
-      throw new CsvReaderException('argumtnts should be array type');
+      throw new Text_CsvReader_Exception('argumtnts should be array type');
     }
     $this->configure($options, $messages);
 
@@ -32,11 +32,11 @@ abstract class Text_CsvReader_Base
 
     // check option names
     if ($diff = array_diff($optionKeys, array_merge($currentOptionKeys, $this->requiredOptions))) {
-        throw new CsvReaderException(sprintf('%s does not support the following options: \'%s\'.', get_class($this), implode('\', \'', $diff)));
+        throw new Text_CsvReader_Exception(sprintf('%s does not support the following options: \'%s\'.', get_class($this), implode('\', \'', $diff)));
     }
     // check required options
     if ($diff = array_diff($this->requiredOptions, array_merge($currentOptionKeys, $optionKeys))) {
-        throw new CsvReaderException(sprintf('%s requires the following options: \'%s\'.', get_class($this), implode('\', \'', $diff)));
+        throw new Text_CsvReader_Exception(sprintf('%s requires the following options: \'%s\'.', get_class($this), implode('\', \'', $diff)));
       }
 
     $this->options  = array_merge($this->options, $options);
@@ -92,7 +92,7 @@ abstract class Text_CsvReader_Base
   public function setMessage($name, $value)
   {
     if (!in_array($name, array_keys($this->messages))) {
-        throw new CsvReaderException(sprintf('%s does not support the following error code: \'%s\'.', get_class($this), $name));
+        throw new Text_CsvReader_Exception(sprintf('%s does not support the following error code: \'%s\'.', get_class($this), $name));
     }
 
     $this->messages[$name] = $value;
@@ -156,7 +156,7 @@ abstract class Text_CsvReader_Base
   public function setOption($name, $value)
   {
     if (!in_array($name, array_merge(array_keys($this->options), $this->requiredOptions))) {
-      throw new CsvReaderException(sprintf('%s does not support the following option: \'%s\'.', get_class($this), $name));
+      throw new Text_CsvReader_Exception(sprintf('%s does not support the following option: \'%s\'.', get_class($this), $name));
     }
     $this->options[$name] = $value;
     $this->prepareTargetColumns();

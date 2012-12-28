@@ -1,5 +1,4 @@
 <?php
-include_once('Stream/Filter/Mbstring.php');
 class Text_CsvReader_Reader_Csv extends Text_CsvReader_Reader
 {
   protected
@@ -21,7 +20,7 @@ class Text_CsvReader_Reader_Csv extends Text_CsvReader_Reader
     parent::__construct($options, $messages);
 
     if (setlocale(LC_ALL, $this->getOption('internal_locale')) === false) {
-      throw new CsvReaderException('setting locale failure: '.$this->getOption('internal_locale'));
+      throw new Text_CsvReader_Exception('setting locale failure: '.$this->getOption('internal_locale'));
     }
     stream_filter_register("convert.mbstring.*",
                            "Stream_Filter_Mbstring");
@@ -35,11 +34,11 @@ class Text_CsvReader_Reader_Csv extends Text_CsvReader_Reader
       $file = $this->getOption('basedir')."/".$file;
     }
     if (!file_exists($file)) {
-      throw new CsvReaderException('input file not exists: '.$file);
+      throw new Text_CsvReader_Exception('input file not exists: '.$file);
     }
     $fp = fopen($file, 'r');
     if ($fp === false) {
-      throw new CsvReaderException('failed to open input file.');
+      throw new Text_CsvReader_Exception('failed to open input file.');
     }
     $filter_name = sprintf('convert.mbstring.encoding.%s:UTF-8',
                            $this->getOption('charset'));
@@ -47,7 +46,7 @@ class Text_CsvReader_Reader_Csv extends Text_CsvReader_Reader
     $s_filter = stream_filter_append($fp, $filter_name, STREAM_FILTER_READ);
     if ($s_filter === false) {
       fclose($fp);
-      throw new CsvReaderException('Cannot append stream filter: '. $filter_name);
+      throw new Text_CsvReader_Exception('Cannot append stream filter: '. $filter_name);
     }
     $this->is_eof = false;
     return $fp;

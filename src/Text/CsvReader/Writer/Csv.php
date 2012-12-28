@@ -30,7 +30,7 @@ class Text_CsvReader_Writer_Csv extends Text_CsvReader_Writer
     }
     $fp = fopen($file, 'w');
     if ($fp === false) {
-      throw new CsvReaderException('failed to open output file: '.$file);
+      throw new Text_CsvReader_Exception('failed to open output file: '.$file);
     }
     if ($this->hasOption('charset') && $this->getOption('charset') !== 'UTF-8') {
       $filter_name = sprintf('convert.mbstring.encoding.UTF-8:%s',
@@ -38,7 +38,7 @@ class Text_CsvReader_Writer_Csv extends Text_CsvReader_Writer
       $s_filter = stream_filter_append($fp, $filter_name, STREAM_FILTER_WRITE);
       if ($s_filter === false) {
         fclose($fp);
-        throw new CsvReaderException('Cannot append stream filter: '. $filter_name);
+        throw new Text_CsvReader_Exception('Cannot append stream filter: '. $filter_name);
       }
     }
     return $fp;
@@ -57,7 +57,7 @@ class Text_CsvReader_Writer_Csv extends Text_CsvReader_Writer
                    $this->getOption('enclosure'));
     if ($ret === false) {
       fclose($this->fp);
-      throw new CsvReaderException('writing csv failure.');
+      throw new Text_CsvReader_Exception('writing csv failure.');
     }
   }
   public function finalize() {

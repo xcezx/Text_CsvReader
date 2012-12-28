@@ -78,7 +78,7 @@ class Text_CsvReader
   static public function setArray($name, $array)
   {
     if (!is_array($array)) {
-      throw new CsvReaderException('Text_CsvReader::setArray() expects an array.');
+      throw new Text_CsvReader_Exception('Text_CsvReader::setArray() expects an array.');
     }
     self::$arrayHolder[$name] = $array;
   }

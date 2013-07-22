@@ -31,7 +31,7 @@
         }
     ],
     "require": {
-        "openpear/stream_filter_mbstring": "0.0.7"
+        "openpear/stream_filter_mbstring": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.10"
